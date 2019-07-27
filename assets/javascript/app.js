@@ -1,32 +1,51 @@
 $(document).ready(function () {
-
+    let score = 0;
     const questions = [{
             q: "The sky is blue.",
-            a: "t"
+            a: "t",
+            b: "f",
+            c: "f",
+            d: "f",
         },
         {
             q: "There are 365 days in a year.",
-            a: "t"
+            a: "t",
+            b: "f",
+            c: "f",
+            d: "f",
         },
         {
             q: "There are 42 ounces in a pound.",
-            a: "f"
+            a: "f",
+            b: "t",
+            c: "t",
+            d: "t",
         },
         {
             q: "The Declaration of Independence was created in 1745.",
-            a: "f"
+            a: "f",
+            b: "t",
+            c: "t",
+            d: "t",
         },
         {
             q: "Bananas are vegetables.",
-            a: "f"
+            a: "f",
+            b: "t",
+            c: "t",
+            d: "t",
         }
     ];
 
-    let answers = ["Boot", "Shoe", "Sneaker", "Flippy floppy"];
+    let answers = []; //convert this into an object with questions and a, b, c, and d;
 
     let QAobj;
 
-
+    function randomQuestion() {
+        const q = Math.floor(Math.random()*questions.length);
+        console.log(questions[q].q);
+    }
+    randomQuestion ();
     //function that will generate all of our new buttons and will be executed whenever there is a new question;
     //I often question my page layout ;) hehehe
     function questionPageLayout() {
@@ -44,7 +63,8 @@ $(document).ready(function () {
 
     //TODO: write timer function 
     ///////////////////////////////////////////////////////////////////////////////////////
-    var timeRemaining = 5;
+    const resetTime= 30;
+    var timeRemaining = resetTime;
     var intervalID;
     $("#stop").on("click", stop);
     $("#startBtn").on("click", run);
@@ -64,7 +84,7 @@ $(document).ready(function () {
     }
 
     function reset() {
-        timeRemaining = 5;
+        timeRemaining = resetTime;
         run();
     }
 
@@ -76,8 +96,16 @@ $(document).ready(function () {
     ///////////////////////////////////////////////////////////////////////////////////////
 
 
+//TODO: CREATE ANSWERED CORRECTLY FUNCTION
+//should use reset without penalizing (ie should give you points/numbercorrect++)
 
 
+//TODO: CREATE ANSWERED INCORRECTLY FUNCTION
+//should use reset while penalizing (ie should not give you points)
+
+
+//TODO: CREATE OUT OF TIME FUNCTION
+//should use reset while penalizing (ie should not give you points... but will display a different message than incorrect function)
 
 
 
