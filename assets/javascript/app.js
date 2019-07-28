@@ -46,11 +46,17 @@ $(document).ready(function () {
     let QHistory = [];
     let questionDone = false;
 
+    
+
     function nextQuestion() {
         Q++;
         console.log("Q: " + Q);
-        questionPageLayout();
-        resetTimer();
+        if (Q > questions.length) {
+            endGame();
+        } else {
+            questionPageLayout();
+            resetTimer();
+        }
 
     }
 
@@ -59,47 +65,45 @@ $(document).ready(function () {
     function questionPageLayout() {
         $("#buttonContainer").empty();
         $("#question").empty();
-        if (Q > questions.length) {
-            $("#message").text(`You answered ${score} correctly out of ${questions.length}`);
-        } else {
-            $("#question").text(`Question ${Q+1}: ${questions[Q].q}`);
 
-            shuffle(questions[Q].choices);
-            for (let i = 0; i < questions[Q].choices.length; i++) {
-                let div = $("<div>");
-                let button = $("<button>").attr("type", "button");
+        $("#question").text(`Question ${Q+1}: ${questions[Q].q}`);
 
-                button.attr("data-answer", questions[Q].choices[i]);
-                button.addClass("btn btn-light btn-lg btn-block");
-                button.text(questions[Q].choices[i]);
-                div.append(button);
-                button.on("click", function () {
-                    const ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
-                    console.log("this is the data-answer: " + ref);
+        shuffle(questions[Q].choices);
+        for (let i = 0; i < questions[Q].choices.length; i++) {
+            let div = $("<div>");
+            let button = $("<button>").attr("type", "button");
 
-                    const html = $(this).html();
-                    console.log("this is the html: " + html);
-                    console.log("this is the questions[Q].a: " + questions[Q].a);
+            button.attr("data-answer", questions[Q].choices[i]);
+            button.addClass("btn btn-light btn-lg btn-block");
+            button.text(questions[Q].choices[i]);
+            div.append(button);
+            button.on("click", function () {
+                const ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
+                console.log("this is the data-answer: " + ref);
 
-                    if (button.text() == questions[Q].a) {
+                const html = $(this).html();
+                console.log("this is the html: " + html);
+                console.log("this is the questions[Q].a: " + questions[Q].a);
 
-                        $(this).removeClass("btn-light").addClass("btn-success");
-                        //TODO: add reset
-                        answerCorrect();
-                    } else {
-                        $(this).removeClass("btn-light").addClass("btn-danger");
-                        answerIncorrect();
-                        //TODO: add reset
-                    }
-                });
-                $("#buttonContainer").append(div);
-            }
+                if (button.text() == questions[Q].a) {
+
+                    $(this).removeClass("btn-light").addClass("btn-success");
+                    //TODO: add reset
+                    answerCorrect();
+                } else {
+                    $(this).removeClass("btn-light").addClass("btn-danger");
+                    answerIncorrect();
+                    //TODO: add reset
+                }
+            });
+            $("#buttonContainer").append(div);
+
         }
     }
 
     //TODO: write timer function 
     ///////////////////////////////////////////////////////////////////////////////////////
-    const resetTime = 20;
+    const resetTime = 5;
     var timeRemaining = resetTime;
     var intervalID;
     $("#stop").on("click", stop);
@@ -129,37 +133,39 @@ $(document).ready(function () {
 
     function stop() {
         clearInterval(intervalID);
-        resetTimer();
     }
     ///////////////////////////////////////////////////////////////////////////////////////
 
 
     //TODO: CREATE ANSWERED CORRECTLY FUNCTION
     //should use reset without penalizing (ie should give you points/numbercorrect++)
-    answerCorrect = function () {
+    function answerCorrect() {
         $("#message").text("You are correct");
         score++;
         nextQuestion();
-
-    };
+    }
 
     //TODO: CREATE ANSWERED INCORRECTLY FUNCTION
     //should use reset while penalizing (ie should not give you points)
-    answerIncorrect = function () {
+    function answerIncorrect() {
         $("#message").text(`Sorry, the correct answer is ${questions[Q].a}`);
         nextQuestion();
-    };
+    }
 
     //TODO: CREATE OUT OF TIME FUNCTION
     //should use reset while penalizing (ie should not give you points... but will display a different message than incorrect function)
-    outOfTime = function () {
+    function outOfTime() {
         $("#message").text(`Out of time... The correct answer is ${questions[Q].a}`);
         nextQuestion();
+    }
 
-    };
+    function endGame() {
+        stop();
+        $("#timer").empty();
+        $("#timer").text("");
+        $("#message").text(`You answered ${score} correctly out of ${questions.length}`);
 
-
-
+    }
 
 
     function makeStartButton() {
