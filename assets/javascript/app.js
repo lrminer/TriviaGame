@@ -50,6 +50,8 @@ $(document).ready(function () {
         Q++;
         console.log("Q: " + Q);
         questionPageLayout();
+        resetTimer();
+
     }
 
 
@@ -123,7 +125,6 @@ $(document).ready(function () {
     function resetTimer() {
         timeRemaining = resetTime;
         run();
-        questionPageLayout();
     }
 
     function stop() {
@@ -178,7 +179,6 @@ $(document).ready(function () {
 
     $("#startBtn").on("click", function () {
         nextQuestion();
-        resetTimer();
     });
 
 
