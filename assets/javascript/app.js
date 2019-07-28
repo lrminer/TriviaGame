@@ -42,73 +42,62 @@ $(document).ready(function () {
     let answers = []; //convert this into an object with questions and a, b, c, and d;
 
     let QAobj;
-    let Q; //this is the Index of the questions object we will use
+    let Q = -1; //this is to hold the Index of the questions object's array
     let QHistory = [];
+    let questionDone = false;
 
-    
-
-    function randomQuestion() {
-        Q = Math.floor(Math.random() * questions.length);
-        console.log(questions[Q].q);
-        console.log(QHistory);
-
-        if (!QHistory.includes(Q)) {
-            const putInHere = $("#questionContainer");
-            putInHere.empty();
-            putInHere.text(questions[Q].q); // TODO: change to QAobj[i].question    
-            QHistory.push(Q);
-        } else {
-            console.log(Q);
-        }
-
-
-
-        
-
+    function nextQuestion() {
+        Q++;
+        console.log("Q: " + Q);
+        questionPageLayout();
     }
+
+
     //function that will generate all of our new buttons and will be executed whenever there is a new question;
     function questionPageLayout() {
         $("#buttonContainer").empty();
-        $("#questionContainer").empty();
-        randomQuestion();
+        $("#question").empty();
+        if (Q > questions.length) {
+            $("#message").text(`You answered ${score} correctly out of ${questions.length}`);
+        } else {
+            $("#question").text(`Question ${Q+1}: ${questions[Q].q}`);
 
+            shuffle(questions[Q].choices);
+            for (let i = 0; i < questions[Q].choices.length; i++) {
+                let div = $("<div>");
+                let button = $("<button>").attr("type", "button");
 
+                button.attr("data-answer", questions[Q].choices[i]);
+                button.addClass("btn btn-light btn-lg btn-block");
+                button.text(questions[Q].choices[i]);
+                div.append(button);
+                button.on("click", function () {
+                    const ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
+                    console.log("this is the data-answer: " + ref);
 
-        shuffle(questions[Q].choices);
-        for (let i = 0; i < questions[Q].choices.length; i++) {
-            let div = $("<div>");
-            let button = $("<button>").attr("type", "button");
-            
-            button.attr("data-answer", questions[Q].choices[i]);
-            button.addClass("btn btn-light btn-lg btn-block");
-            button.text(questions[Q].choices[i]);
-            div.append(button);
-            button.on("click", function () {
-                const ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
-                console.log("this is the data-answer: " + ref);
+                    const html = $(this).html();
+                    console.log("this is the html: " + html);
+                    console.log("this is the questions[Q].a: " + questions[Q].a);
 
-                const html = $(this).html();
-                console.log("this is the html: " + html);
-                console.log("this is the questions[Q].a: " + questions[Q].a);
-                
-                if (button.text() == questions[Q].a) {
+                    if (button.text() == questions[Q].a) {
 
-                    $(this).removeClass("btn-light").addClass("btn-success");
-                    //TODO: add reset
-                } else {
-                    $(this).removeClass("btn-light").addClass("btn-danger");
-                    
-                    //TODO: add reset
-                }
-            });
-            $("#buttonContainer").append(div);
-            
+                        $(this).removeClass("btn-light").addClass("btn-success");
+                        //TODO: add reset
+                        answerCorrect();
+                    } else {
+                        $(this).removeClass("btn-light").addClass("btn-danger");
+                        answerIncorrect();
+                        //TODO: add reset
+                    }
+                });
+                $("#buttonContainer").append(div);
+            }
         }
     }
 
     //TODO: write timer function 
     ///////////////////////////////////////////////////////////////////////////////////////
-    const resetTime = 60;
+    const resetTime = 20;
     var timeRemaining = resetTime;
     var intervalID;
     $("#stop").on("click", stop);
@@ -126,59 +115,47 @@ $(document).ready(function () {
         $("#timer").html("<h1 class='display-1'>" + timeRemaining + "</h1>");
         if (timeRemaining === 0) {
             stop();
+            outOfTime();
             console.log("Time's Up!");
         }
     }
 
-    function reset() {
+    function resetTimer() {
         timeRemaining = resetTime;
         run();
+        questionPageLayout();
     }
 
     function stop() {
         clearInterval(intervalID);
-        questionPageLayout();
-        reset();
+        resetTimer();
     }
     ///////////////////////////////////////////////////////////////////////////////////////
 
 
     //TODO: CREATE ANSWERED CORRECTLY FUNCTION
     //should use reset without penalizing (ie should give you points/numbercorrect++)
+    answerCorrect = function () {
+        $("#message").text("You are correct");
+        score++;
+        nextQuestion();
 
+    };
 
     //TODO: CREATE ANSWERED INCORRECTLY FUNCTION
     //should use reset while penalizing (ie should not give you points)
-
+    answerIncorrect = function () {
+        $("#message").text(`Sorry, the correct answer is ${questions[Q].a}`);
+        nextQuestion();
+    };
 
     //TODO: CREATE OUT OF TIME FUNCTION
     //should use reset while penalizing (ie should not give you points... but will display a different message than incorrect function)
+    outOfTime = function () {
+        $("#message").text(`Out of time... The correct answer is ${questions[Q].a}`);
+        nextQuestion();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    };
 
 
 
@@ -190,7 +167,7 @@ $(document).ready(function () {
         putInHere.text(answers); // TODO: change to QAobj[i].question
     }
 
-// this only works on elements native to the html page not elements inserted into the DOM
+    // this only works on elements native to the html page not elements inserted into the DOM
     $("button").on("click", function () {
         ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
         console.log(ref);
@@ -200,9 +177,8 @@ $(document).ready(function () {
 
 
     $("#startBtn").on("click", function () {
-        randomQuestion(); //possibly move this into the questionPageLayout function
-        questionPageLayout();
-        reset();
+        nextQuestion();
+        resetTimer();
     });
 
 
