@@ -1,61 +1,86 @@
 $(document).ready(function () {
     let score = 0;
+    let questionsLeft = 5;
     const questions = [{
             q: "The sky is blue.",
             a: "t",
-            b: "f",
-            c: "f",
-            d: "f",
+
+            choices: ["t", "f", "f", "f"]
         },
+
         {
             q: "There are 365 days in a year.",
             a: "t",
-            b: "f",
-            c: "f",
-            d: "f",
+
+            choices: ["t", "f", "f", "f"]
+
         },
         {
             q: "There are 42 ounces in a pound.",
             a: "f",
-            b: "t",
-            c: "t",
-            d: "t",
+
+            choices: ["f", "t", "t", "t"]
+
         },
         {
             q: "The Declaration of Independence was created in 1745.",
             a: "f",
-            b: "t",
-            c: "t",
-            d: "t",
+
+            choices: ["f", "t", "t", "t"]
+
         },
         {
             q: "Bananas are vegetables.",
             a: "f",
-            b: "t",
-            c: "t",
-            d: "t",
+
+            choices: ["f", "t", "t", "t"]
+
         }
     ];
+    console.log(questions[0]);
 
     let answers = []; //convert this into an object with questions and a, b, c, and d;
 
     let QAobj;
+    let Q; //this is the Index of the questions object we will use
+    let QHistory = [];
+
+    
 
     function randomQuestion() {
-        const q = Math.floor(Math.random()*questions.length);
-        console.log(questions[q].q);
+        Q = Math.floor(Math.random() * questions.length);
+        console.log(questions[Q].q);
+        console.log(QHistory);
+
+        if (!QHistory.includes(Q)) {
+            const putInHere = $("#questionContainer");
+            putInHere.empty();
+            putInHere.text(questions[Q].q); // TODO: change to QAobj[i].question    
+            QHistory.push(Q);
+        } else {
+            console.log(Q);
+        }
+
+
+
+        
+
     }
-    randomQuestion ();
     //function that will generate all of our new buttons and will be executed whenever there is a new question;
-    //I often question my page layout ;) hehehe
     function questionPageLayout() {
         $("#buttonContainer").empty();
-        shuffle(answers);
-        for (let i = 0; i < answers.length; i++) {
+        $("#questionContainer").empty();
+        randomQuestion();
+
+
+
+        shuffle(questions[Q].choices);
+        for (let i = 0; i < questions[Q].choices.length; i++) {
             let div = $("<div>");
             let button = $("<button>").attr("type", "button");
+            button.attr("data-answer", questions[Q].choices[i]);
             button.addClass("btn btn-light btn-lg btn-block");
-            button.text(answers[i]);
+            button.text(questions[Q].choices[i]);
             div.append(button);
             $("#buttonContainer").append(div);
         }
@@ -63,7 +88,7 @@ $(document).ready(function () {
 
     //TODO: write timer function 
     ///////////////////////////////////////////////////////////////////////////////////////
-    const resetTime= 30;
+    const resetTime = 5;
     var timeRemaining = resetTime;
     var intervalID;
     $("#stop").on("click", stop);
@@ -73,6 +98,8 @@ $(document).ready(function () {
         clearInterval(intervalID);
         intervalID = setInterval(decrement, 1000);
     }
+
+
 
     function decrement() {
         timeRemaining--;
@@ -96,18 +123,16 @@ $(document).ready(function () {
     ///////////////////////////////////////////////////////////////////////////////////////
 
 
-//TODO: CREATE ANSWERED CORRECTLY FUNCTION
-//should use reset without penalizing (ie should give you points/numbercorrect++)
+    //TODO: CREATE ANSWERED CORRECTLY FUNCTION
+    //should use reset without penalizing (ie should give you points/numbercorrect++)
 
 
-//TODO: CREATE ANSWERED INCORRECTLY FUNCTION
-//should use reset while penalizing (ie should not give you points)
+    //TODO: CREATE ANSWERED INCORRECTLY FUNCTION
+    //should use reset while penalizing (ie should not give you points)
 
 
-//TODO: CREATE OUT OF TIME FUNCTION
-//should use reset while penalizing (ie should not give you points... but will display a different message than incorrect function)
-
-
+    //TODO: CREATE OUT OF TIME FUNCTION
+    //should use reset while penalizing (ie should not give you points... but will display a different message than incorrect function)
 
 
 
@@ -138,11 +163,6 @@ $(document).ready(function () {
 
 
 
-    function chooseQuestion() {
-        const putInHere = $("#questionContainer");
-        putInHere.empty();
-        putInHere.text(answers); // TODO: change to QAobj[i].question
-    }
 
     function makeStartButton() {
         const putInHere = $("#questionContainer");
@@ -150,13 +170,21 @@ $(document).ready(function () {
         putInHere.text(answers); // TODO: change to QAobj[i].question
     }
 
+// this only works on elements native to the html page not elements inserted into the DOM
+    $("button").on("click", function () {
+        ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
+        console.log(ref);
+        html = $(this).html();
+        console.log(html);
+    });
 
 
     $("#startBtn").on("click", function () {
-        chooseQuestion(); //possibly move this into the questionPageLayout function
+        randomQuestion(); //possibly move this into the questionPageLayout function
         questionPageLayout();
-        timer();
+        reset();
     });
+
 
 
 
@@ -191,10 +219,10 @@ $(document).ready(function () {
         return array;
     }
 
-    // Used like so
-    var arr = [2, 11, 37, 42];
-    arr = shuffle(arr);
-    console.log(arr);
+
+
+
+
 
 
 
