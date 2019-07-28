@@ -78,23 +78,37 @@ $(document).ready(function () {
         for (let i = 0; i < questions[Q].choices.length; i++) {
             let div = $("<div>");
             let button = $("<button>").attr("type", "button");
-            button.on("click", function () {
-                ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
-                console.log(ref);
-                html = $(this).html();
-                console.log(html);
-            });
+            
             button.attr("data-answer", questions[Q].choices[i]);
             button.addClass("btn btn-light btn-lg btn-block");
             button.text(questions[Q].choices[i]);
             div.append(button);
+            button.on("click", function () {
+                const ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
+                console.log("this is the data-answer: " + ref);
+
+                const html = $(this).html();
+                console.log("this is the html: " + html);
+                console.log("this is the questions[Q].a: " + questions[Q].a);
+                
+                if (button.text() == questions[Q].a) {
+
+                    $(this).removeClass("btn-light").addClass("btn-success");
+                    //TODO: add reset
+                } else {
+                    $(this).removeClass("btn-light").addClass("btn-danger");
+                    
+                    //TODO: add reset
+                }
+            });
             $("#buttonContainer").append(div);
+            
         }
     }
 
     //TODO: write timer function 
     ///////////////////////////////////////////////////////////////////////////////////////
-    const resetTime = 5;
+    const resetTime = 60;
     var timeRemaining = resetTime;
     var intervalID;
     $("#stop").on("click", stop);
