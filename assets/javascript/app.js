@@ -78,6 +78,12 @@ $(document).ready(function () {
         for (let i = 0; i < questions[Q].choices.length; i++) {
             let div = $("<div>");
             let button = $("<button>").attr("type", "button");
+            button.on("click", function () {
+                ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
+                console.log(ref);
+                html = $(this).html();
+                console.log(html);
+            });
             button.attr("data-answer", questions[Q].choices[i]);
             button.addClass("btn btn-light btn-lg btn-block");
             button.text(questions[Q].choices[i]);
