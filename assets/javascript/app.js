@@ -181,7 +181,7 @@ $(document).ready(function () {
     }
 
     function startGame() {
-        Q = -1;
+        Q = -1; //needs to be before nextQuestion
         nextQuestion();
     }
 
@@ -191,11 +191,9 @@ $(document).ready(function () {
             startGame();
         });
         $("#buttonContainer").empty().append(startBtn);
-        
-
-
+        score = 0;
     }
-    
+
     // this only works on elements native to the html page not elements inserted into the DOM
     $("button").on("click", function () {
         ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
