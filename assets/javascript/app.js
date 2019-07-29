@@ -43,15 +43,15 @@ $(document).ready(function () {
 
     let QAobj;
     let Q = -1; //this is to hold the Index of the questions object's array
-    let QHistory = [];
+    let QHistory = []; //might delete later; was intended for use with questions given in random order.
     let questionDone = false;
 
-    
+
 
     function nextQuestion() {
         Q++;
         console.log("Q: " + Q);
-        if (Q > questions.length) {
+        if (Q > questions.length - 1) {
             endGame();
         } else {
             questionPageLayout();
@@ -163,11 +163,28 @@ $(document).ready(function () {
         stop();
         $("#timer").empty();
         $("#timer").text("");
+        $("#buttonContainer").empty();
+        $("#question").empty();
         $("#message").text(`You answered ${score} correctly out of ${questions.length}`);
+        const backBtn = $(`<button id="backBtn" class="btn btn-primary btn-lg btn-block">Back</button>`);
+        backBtn.on("click", function () {
+            initializerFunction();
+            /////////////////////////////////////////////////////////////////////
+            
+            /////////////////////////////////////////////////////////////////////
+
+        });
+        $("#buttonContainer").append(backBtn);
+
 
     }
 
-
+    function initializerFunction() {
+        const startBtn = $(`<button type="button" id="startBtn" class="btn btn-primary btn-lg btn-block LRM">START</button>`);
+        startBtn.on("click", function () {
+            startGame();
+        });
+    }
     function makeStartButton() {
         const putInHere = $("#questionContainer");
         putInHere.empty();
@@ -184,21 +201,9 @@ $(document).ready(function () {
 
 
     $("#startBtn").on("click", function () {
+        Q = -1
         nextQuestion();
     });
-
-
-
-
-
-
-
-    // questionPageLayout();
-
-
-
-
-
 
     //from stackoverflow
     function shuffle(array) {
