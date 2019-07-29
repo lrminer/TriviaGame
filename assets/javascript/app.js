@@ -170,7 +170,8 @@ $(document).ready(function () {
         backBtn.on("click", function () {
             initializerFunction();
             /////////////////////////////////////////////////////////////////////
-            
+//The back button basically reloads the screen, but doesnt actually. Its main purpose is to execute the initizer function.
+//Through the initializerFunction we are able to reset all of the state. Hopefully this can be used to tie back to a query page as the initializer instead of just the start button.
             /////////////////////////////////////////////////////////////////////
 
         });
@@ -179,18 +180,22 @@ $(document).ready(function () {
 
     }
 
+    function startGame() {
+        Q = -1;
+        nextQuestion();
+    }
+
     function initializerFunction() {
         const startBtn = $(`<button type="button" id="startBtn" class="btn btn-primary btn-lg btn-block LRM">START</button>`);
         startBtn.on("click", function () {
             startGame();
         });
-    }
-    function makeStartButton() {
-        const putInHere = $("#questionContainer");
-        putInHere.empty();
-        putInHere.text(answers); // TODO: change to QAobj[i].question
-    }
+        $("#buttonContainer").empty().append(startBtn);
+        
 
+
+    }
+    
     // this only works on elements native to the html page not elements inserted into the DOM
     $("button").on("click", function () {
         ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
@@ -201,8 +206,7 @@ $(document).ready(function () {
 
 
     $("#startBtn").on("click", function () {
-        Q = -1
-        nextQuestion();
+        startGame();
     });
 
     //from stackoverflow
