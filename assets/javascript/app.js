@@ -57,10 +57,7 @@ $(document).ready(function () {
             questionPageLayout();
             resetTimer();
         }
-
     }
-
-
     //function that will generate all of our new buttons and will be executed whenever there is a new question;
     function questionPageLayout() {
         $("#buttonContainer").empty();
@@ -161,11 +158,10 @@ $(document).ready(function () {
 
     function endGame() {
         stop();
-        $("#timer").empty();
-        $("#timer").text("");
+        $("#timer").text("00");
         $("#buttonContainer").empty();
         $("#question").empty();
-        $("#message").text(`You answered ${score} correctly out of ${questions.length}`);
+        $("#message").html(`You answered <b>${score}</b> correctly out of <b>${questions.length}</b>`);
         const backBtn = $(`<button id="backBtn" class="btn btn-primary btn-lg btn-block">Back</button>`);
         backBtn.on("click", function () {
             initializerFunction();
@@ -193,15 +189,14 @@ $(document).ready(function () {
         $("#buttonContainer").empty().append(startBtn);
         score = 0;
     }
-
-    // this only works on elements native to the html page not elements inserted into the DOM
+//////////////////////////////////////////////////////////////////////////this is for testing. remove later//////////////////////////////////////////////////////////////////////////////////////////////////////
     $("button").on("click", function () {
-        ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
+        ref = $(this).attr("data-answer"); 
         console.log(ref);
         html = $(this).html();
         console.log(html);
     });
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $("#startBtn").on("click", function () {
         startGame();
@@ -227,15 +222,5 @@ $(document).ready(function () {
 
         return array;
     }
-
-
-
-
-
-
-
-
-
-
 
 });
