@@ -127,7 +127,7 @@ $(document).ready(function () {
     let questionDone = false;
 
 
-
+    initializerFunction();
     function nextQuestion() {
         Q++;
         console.log("Q: " + Q);
