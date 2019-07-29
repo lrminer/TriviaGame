@@ -1,42 +1,141 @@
 $(document).ready(function () {
     let score = 0;
     let questionsLeft = 5;
-    const questions = [{
-            q: "The sky is blue.",
-            a: "t",
+    // const questions = [{
+    //         q: "The sky is blue.",
+    //         a: "t",
 
-            choices: ["t", "f", "f", "f"]
-        },
+    //         choices: ["t", "f", "f", "f"]
+    //     },
 
-        {
-            q: "There are 365 days in a year.",
-            a: "t",
+    //     {
+    //         q: "There are 365 days in a year.",
+    //         a: "t",
 
-            choices: ["t", "f", "f", "f"]
+    //         choices: ["t", "f", "f", "f"]
 
-        },
-        {
-            q: "There are 42 ounces in a pound.",
-            a: "f",
+    //     },
+    //     {
+    //         q: "There are 42 ounces in a pound.",
+    //         a: "f",
 
-            choices: ["f", "t", "t", "t"]
+    //         choices: ["f", "t", "t", "t"]
 
-        },
-        {
-            q: "The Declaration of Independence was created in 1745.",
-            a: "f",
+    //     },
+    //     {
+    //         q: "The Declaration of Independence was created in 1745.",
+    //         a: "f",
 
-            choices: ["f", "t", "t", "t"]
+    //         choices: ["f", "t", "t", "t"]
 
-        },
-        {
-            q: "Bananas are vegetables.",
-            a: "f",
+    //     },
+    //     {
+    //         q: "Bananas are vegetables.",
+    //         a: "f",
 
-            choices: ["f", "t", "t", "t"]
+    //         choices: ["f", "t", "t", "t"]
 
-        }
-    ];
+    //     }
+    // ];
+
+
+    lukeTestInfo = {
+        "name": "Luke Skywalker",
+        "height": "172",
+        "mass": "77",
+        "hair_color": "blond",
+        "skin_color": "fair",
+        "eye_color": "blue",
+        "birth_year": "19BBY",
+        "gender": "male",
+        "homeworld": "https://swapi.co/api/planets/1/",
+        "films": [
+            "https://swapi.co/api/films/2/",
+            "https://swapi.co/api/films/6/",
+            "https://swapi.co/api/films/3/",
+            "https://swapi.co/api/films/1/",
+            "https://swapi.co/api/films/7/"
+        ],
+        "species": [
+            "https://swapi.co/api/species/1/"
+        ],
+        "vehicles": [
+            "https://swapi.co/api/vehicles/14/",
+            "https://swapi.co/api/vehicles/30/"
+        ],
+        "starships": [
+            "https://swapi.co/api/starships/12/",
+            "https://swapi.co/api/starships/22/"
+        ],
+        "created": "2014-12-09T13:50:51.644000Z",
+        "edited": "2014-12-20T21:17:56.891000Z",
+        "url": "https://swapi.co/api/people/1/"
+    };
+
+
+    questions = [{
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    {
+        q: `What is ${lukeTestInfo.name}'s height?`,
+        a: `${lukeTestInfo.height}`,
+        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+    },
+    
+
+];
+    // console.log(questionsTest);
+    console.log(lukeTestInfo.name);
+    console.log(lukeTestInfo.height);
+    console.log(lukeTestInfo.mass);
+    console.log(lukeTestInfo.hair_color);
+    console.log(lukeTestInfo.skin_color);
+    console.log(lukeTestInfo.birth_year);
+    console.log(lukeTestInfo.gender);
+    console.log(lukeTestInfo.homeworld);
+
     console.log(questions[0]);
 
     let answers = []; //convert this into an object with questions and a, b, c, and d;
@@ -98,7 +197,7 @@ $(document).ready(function () {
         }
     }
 
-    //TODO: write timer function 
+    //////////////////////////////////////////////////TIMER BELOW (DO NOT CHANGE)//////////
     ///////////////////////////////////////////////////////////////////////////////////////
     const resetTime = 5;
     var timeRemaining = resetTime;
@@ -166,8 +265,8 @@ $(document).ready(function () {
         backBtn.on("click", function () {
             initializerFunction();
             /////////////////////////////////////////////////////////////////////
-//The back button basically reloads the screen, but doesnt actually. Its main purpose is to execute the initizer function.
-//Through the initializerFunction we are able to reset all of the state. Hopefully this can be used to tie back to a query page as the initializer instead of just the start button.
+            //The back button basically reloads the screen, but doesnt actually. Its main purpose is to execute the initizer function.
+            //Through the initializerFunction we are able to reset all of the state. Hopefully this can be used to tie back to a query page as the initializer instead of just the start button.
             /////////////////////////////////////////////////////////////////////
 
         });
@@ -177,7 +276,7 @@ $(document).ready(function () {
     }
 
     function startGame() {
-        Q = -1; //needs to be before nextQuestion
+        Q = -1; //assignment of Q to -1 needs to be before nextQuestion
         nextQuestion();
     }
 
@@ -189,14 +288,14 @@ $(document).ready(function () {
         $("#buttonContainer").empty().append(startBtn);
         score = 0;
     }
-//////////////////////////////////////////////////////////////////////////this is for testing. remove later//////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////this is for testing. remove later//////////////////////////////////////////////////////////////////////////////////////////////////////
     $("button").on("click", function () {
-        ref = $(this).attr("data-answer"); 
+        ref = $(this).attr("data-answer");
         console.log(ref);
         html = $(this).html();
         console.log(html);
     });
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $("#startBtn").on("click", function () {
         startGame();
