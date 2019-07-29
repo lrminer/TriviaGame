@@ -74,55 +74,36 @@ $(document).ready(function () {
 
 
     questions = [{
-        q: `What is ${lukeTestInfo.name}'s height?`,
+        q: `What is ${lukeTestInfo.name}'s height (in cm)?`,
         a: `${lukeTestInfo.height}`,
         choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
     },
     {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+        q: `What is ${lukeTestInfo.name}'s mass (in kg)?`,
+        a: `${lukeTestInfo.mass}`,
+        choices: [`${lukeTestInfo.mass}`, "78", "79", "80"]
     },
     {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+        q: `What is ${lukeTestInfo.name}'s hair color?`,
+        a: `${lukeTestInfo.hair_color}`,
+        choices: [`${lukeTestInfo.hair_color}`, "black", "red", "green"]
     },
     {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+        q: `What is ${lukeTestInfo.name}'s birth year?`,
+        a: `${lukeTestInfo.birth_year}`,
+        choices: [`${lukeTestInfo.birth_year}`, "20BBY", "20ABY", "19ABY"]
     },
     {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+        q: `What is ${lukeTestInfo.name}'s gender?`,
+        a: `${lukeTestInfo.gender}`,
+        choices: [`${lukeTestInfo.gender}`, "female"] //testing to make sure it can handle less than 4 answers appropriately
     },
     {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+        q: `How many Star Wars films is ${lukeTestInfo.name} in?`,
+        a: `${lukeTestInfo.films.length}`,
+        choices: [`${lukeTestInfo.films.length}`,`${lukeTestInfo.films.length+2}`, `${lukeTestInfo.films.length-1}`, `${lukeTestInfo.films.length+1}`]
     },
-    {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
-    },
-    {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
-    },
-    {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
-    },
-    {
-        q: `What is ${lukeTestInfo.name}'s height?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
-    },
+    
     
 
 ];
