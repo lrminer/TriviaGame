@@ -267,7 +267,9 @@ $(document).ready(function () {
             startGame();
         });
         $("#buttonContainer").empty().append(startBtn);
+        $("#message").empty();
         score = 0;
+
     }
     //////////////////////////////////////////////////////////////////////////this is for testing. remove later//////////////////////////////////////////////////////////////////////////////////////////////////////
     $("button").on("click", function () {
