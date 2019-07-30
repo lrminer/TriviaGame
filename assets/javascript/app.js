@@ -72,41 +72,68 @@ $(document).ready(function () {
         "url": "https://swapi.co/api/people/1/"
     };
 
+    // let results;
+
+    // function searchSWAPI() {
+    //     const baseURL = "https://swapi.co/api/people/";
+    //     const characterName = $("#queryCharacterName").val();
+    //     let queryURL = baseURL + characterName;
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET"
+    //     }).then(function (response) {
+    //         console.log(response);
+    //         results = response.results;
+    //         console.log(results);
+    //         for (let i = 0; i <results.length; i++){
+    //             console.log(results[i]);
+    //         }
+
+    //     });
+    // }
+
+    // searchSWAPI();
+    // console.log("here are the results " + results);
 
     questions = [{
-        q: `What is ${lukeTestInfo.name}'s height (in cm)?`,
-        a: `${lukeTestInfo.height}`,
-        choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
-    },
-    {
-        q: `What is ${lukeTestInfo.name}'s mass (in kg)?`,
-        a: `${lukeTestInfo.mass}`,
-        choices: [`${lukeTestInfo.mass}`, "78", "79", "80"]
-    },
-    {
-        q: `What is ${lukeTestInfo.name}'s hair color?`,
-        a: `${lukeTestInfo.hair_color}`,
-        choices: [`${lukeTestInfo.hair_color}`, "black", "red", "green"]
-    },
-    {
-        q: `What is ${lukeTestInfo.name}'s birth year?`,
-        a: `${lukeTestInfo.birth_year}`,
-        choices: [`${lukeTestInfo.birth_year}`, "20BBY", "20ABY", "19ABY"]
-    },
-    {
-        q: `What is ${lukeTestInfo.name}'s gender?`,
-        a: `${lukeTestInfo.gender}`,
-        choices: [`${lukeTestInfo.gender}`, "female"] //testing to make sure it can handle less than 4 answers appropriately
-    },
-    {
-        q: `How many Star Wars films is ${lukeTestInfo.name} in?`,
-        a: `${lukeTestInfo.films.length}`,
-        choices: [`${lukeTestInfo.films.length}`,`${lukeTestInfo.films.length+2}`, `${lukeTestInfo.films.length-1}`, `${lukeTestInfo.films.length+1}`]
-    },
-    
-    
+            q: `What is ${lukeTestInfo.name}'s height (in cm)?`,
+            a: `${lukeTestInfo.height}`,
+            choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+        },
+        {
+            q: `What is ${lukeTestInfo.name}'s mass (in kg)?`,
+            a: `${lukeTestInfo.mass}`,
+            choices: [`${lukeTestInfo.mass}`, "78", "79", "80"]
+        },
+        {
+            q: `What is ${lukeTestInfo.name}'s hair color?`,
+            a: `${lukeTestInfo.hair_color}`,
+            choices: [`${lukeTestInfo.hair_color}`, "black", "red", "green"]
+        },
+        {
+            q: `What is ${lukeTestInfo.name}'s skin color?`,
+            a: `${lukeTestInfo.skin_color}`,
+            choices: [`${lukeTestInfo.skin_color}`, "dark", "blue", "yellow"]
+        },
+        {
+            q: `What is ${lukeTestInfo.name}'s birth year?`,
+            a: `${lukeTestInfo.birth_year}`,
+            choices: [`${lukeTestInfo.birth_year}`, "20BBY", "20ABY", "19ABY"]
+        },
+        {
+            q: `What is ${lukeTestInfo.name}'s gender?`,
+            a: `${lukeTestInfo.gender}`,
+            choices: [`${lukeTestInfo.gender}`, "female"] //testing to make sure it can handle less than 4 answers appropriately
+        },
+        {
+            q: `How many Star Wars films is ${lukeTestInfo.name} in?`,
+            a: `${lukeTestInfo.films.length}`,
+            choices: [`${lukeTestInfo.films.length}`, `${lukeTestInfo.films.length+2}`, `${lukeTestInfo.films.length-1}`, `${lukeTestInfo.films.length+1}`]
+        },
 
-];
+
+
+    ];
     // console.log(questionsTest);
     console.log(lukeTestInfo.name);
     console.log(lukeTestInfo.height);
@@ -128,6 +155,7 @@ $(document).ready(function () {
 
 
     initializerFunction();
+
     function nextQuestion() {
         Q++;
         console.log("Q: " + Q);
@@ -181,9 +209,13 @@ $(document).ready(function () {
     //////////////////////////////////////////////////TIMER BELOW (DO NOT CHANGE)//////////
     ///////////////////////////////////////////////////////////////////////////////////////
     const resetTime = 5;
+
     var timeRemaining = resetTime;
+
     var intervalID;
-    $("#stop").on("click", stop);
+
+    var intervalIDWait;
+
     $("#startBtn").on("click", run);
 
     function run() {
@@ -191,7 +223,10 @@ $(document).ready(function () {
         intervalID = setInterval(decrement, 1000);
     }
 
-
+    // function runWaitTime() {
+    //     clearInterval(intervalIDWait);
+    //     intervalIDWait = setInterval(decWait, 1000);
+    // }
 
     function decrement() {
         timeRemaining--;
@@ -202,6 +237,15 @@ $(document).ready(function () {
             console.log("Time's Up!");
         }
     }
+
+    // function decWait() {
+    //     waitTime--;
+    //     $("#timer").html("<h1 class='display-1'>Next question in:" + waitTime + "</h1>")
+    //     if (timeRemaining === 0) {
+    //         stop();
+    //         nextQuestion();
+    //     }
+    // }
 
     function resetTimer() {
         timeRemaining = resetTime;
@@ -257,6 +301,7 @@ $(document).ready(function () {
     }
 
     function startGame() {
+        searchSWAPI();
         Q = -1; //assignment of Q to -1 needs to be before nextQuestion
         nextQuestion();
     }
