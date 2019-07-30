@@ -179,6 +179,7 @@ $(document).ready(function () {
 
     function nextQuestion() {
         Q++;
+        answerOrOOT = false;
         console.log("Q: " + Q);
         if (Q > questions.length - 1) {
             endGame();
