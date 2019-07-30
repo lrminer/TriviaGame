@@ -130,6 +130,11 @@ $(document).ready(function () {
             a: `${lukeTestInfo.films.length}`,
             choices: [`${lukeTestInfo.films.length}`, `${lukeTestInfo.films.length+2}`, `${lukeTestInfo.films.length-1}`, `${lukeTestInfo.films.length+1}`]
         },
+        {
+            q: `What programming language do the Hutts use?`,
+            a: `JabbaScript`,
+            choices: [`JabbaScript`, `Java`, `C#`, `JavaScript`]
+        },
 
 
 
@@ -219,6 +224,9 @@ var resetWaitTime = 5
     var intervalIDWait;
 
     $("#startBtn").on("click", run);
+    $("#stopBtn").on("click", stop); 
+    $("#runBtn").on("click", run);
+    $("#resetBtn").on("click", resetTimer);
 
     function run() {
         clearInterval(intervalID);
