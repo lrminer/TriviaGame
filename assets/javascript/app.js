@@ -1,44 +1,7 @@
 $(document).ready(function () {
     let score = 0;
     let answerOrOOT = false;
-
-    // const questions = [{
-    //         q: "The sky is blue.",
-    //         a: "t",
-
-    //         choices: ["t", "f", "f", "f"]
-    //     },
-
-    //     {
-    //         q: "There are 365 days in a year.",
-    //         a: "t",
-
-    //         choices: ["t", "f", "f", "f"]
-
-    //     },
-    //     {
-    //         q: "There are 42 ounces in a pound.",
-    //         a: "f",
-
-    //         choices: ["f", "t", "t", "t"]
-
-    //     },
-    //     {
-    //         q: "The Declaration of Independence was created in 1745.",
-    //         a: "f",
-
-    //         choices: ["f", "t", "t", "t"]
-
-    //     },
-    //     {
-    //         q: "Bananas are vegetables.",
-    //         a: "f",
-
-    //         choices: ["f", "t", "t", "t"]
-
-    //     }
-    // ];
-
+console.log(characters);
 
     lukeTestInfo = {
         "name": "Luke Skywalker",
@@ -197,13 +160,14 @@ $(document).ready(function () {
 
         shuffle(questions[Q].choices);
         for (let i = 0; i < questions[Q].choices.length; i++) {
-            let div = $("<div>");
+            //let div = $("<div>");
+            
             let button = $("<button>").attr("type", "button");
 
             button.attr("data-answer", questions[Q].choices[i]);
-            button.addClass("btn btn-light btn-lg btn-block");
+            button.addClass("btn btn-light btn-lg col-3");
             button.text(questions[Q].choices[i]);
-            div.append(button);
+           // div.append(button);
             button.on("click", function () {
                 const ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
                 console.log("this is the data-answer: " + ref);
@@ -227,7 +191,7 @@ $(document).ready(function () {
                     }
                 }
             });
-            $("#buttonContainer").append(div);
+            $("#buttonContainer").append(button);
 
         }
     }
