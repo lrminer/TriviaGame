@@ -1,6 +1,7 @@
 $(document).ready(function () {
     let score = 0;
-    let questionsLeft = 5;
+    let answerOrOOT = false;
+
     // const questions = [{
     //         q: "The sky is blue.",
     //         a: "t",
@@ -73,6 +74,21 @@ $(document).ready(function () {
     };
 
     // let results;
+
+    // var myResponse;
+    // $.ajax({
+    //                 url: 'PageMethod/GetData',
+    //                 method: 'post',
+    //                 dataType: 'json',
+    //                 data: JSON.stringify({ dataId: "xxx" }),
+    //                 contentType: 'application/json',
+    //                 success: function (data) {
+    //                     myResponse = data.d.responseText;
+    //                 },
+    //                 error: function (ex) {
+    //                     alert(ex.responseText);
+    //                 }
+    //             });
 
     // function searchSWAPI() {
     //     const baseURL = "https://swapi.co/api/people/";
@@ -195,15 +211,19 @@ $(document).ready(function () {
                 console.log("this is the html: " + html);
                 console.log("this is the questions[Q].a: " + questions[Q].a);
 
-                if (button.text() == questions[Q].a) {
+                if (!answerOrOOT) {
+                    answerOrOOT = true;
+                    console.log(answerOrOOT);
+                    if (button.text() == questions[Q].a) {
 
-                    $(this).removeClass("btn-light").addClass("btn-success");
-                    //TODO: add reset
-                    answerCorrect();
-                } else {
-                    $(this).removeClass("btn-light").addClass("btn-danger");
-                    answerIncorrect();
-                    //TODO: add reset
+                        $(this).removeClass("btn-light").addClass("btn-success");
+                        //TODO: add reset
+                        answerCorrect();
+                    } else {
+                        $(this).removeClass("btn-light").addClass("btn-danger");
+                        answerIncorrect();
+                        //TODO: add reset
+                    }
                 }
             });
             $("#buttonContainer").append(div);
@@ -258,7 +278,7 @@ $(document).ready(function () {
     var intervalIDWait;
 
     function runWaitTime() {
-        clearInterval (intervalIDWait);
+        clearInterval(intervalIDWait);
         intervalIDWait = setInterval(decWait, 1000);
     }
 
@@ -302,14 +322,16 @@ $(document).ready(function () {
     function answerIncorrect() {
         $("#message").text(`Sorry, the correct answer is ${questions[Q].a}`);
         stop();
-        runWaitTime();    }
+        runWaitTime();
+    }
 
     //TODO: CREATE OUT OF TIME FUNCTION
     //should use reset while penalizing (ie should not give you points... but will display a different message than incorrect function)
     function outOfTime() {
         $("#message").text(`Out of time... The correct answer is ${questions[Q].a}`);
         stop();
-        runWaitTime();    }
+        runWaitTime();
+    }
 
     function endGame() {
         stop();
