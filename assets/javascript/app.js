@@ -191,9 +191,9 @@ $(document).ready(function () {
     //function that will generate all of our new buttons and will be executed whenever there is a new question;
     function questionPageLayout() {
         $("#buttonContainer").empty();
-        $("#question").empty();
+        $("#message").empty();
 
-        $("#question").text(`Question ${Q+1}: ${questions[Q].q}`);
+        $("#message").text(`Question ${Q+1}: ${questions[Q].q}`);
 
         shuffle(questions[Q].choices);
         for (let i = 0; i < questions[Q].choices.length; i++) {
@@ -338,7 +338,7 @@ $(document).ready(function () {
         stop();
         $("#timer").text("00");
         $("#buttonContainer").empty();
-        $("#question").empty();
+        $("#message").empty();
         $("#message").html(`You answered <b>${score}</b> correctly out of <b>${questions.length}</b>`);
         const backBtn = $(`<button id="backBtn" class="btn btn-primary btn-lg btn-block">Back</button>`);
         backBtn.on("click", function () {
