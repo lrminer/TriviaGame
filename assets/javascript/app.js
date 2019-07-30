@@ -213,18 +213,16 @@ $(document).ready(function () {
 
     //////////////////////////////////////////////////TIMER BELOW (DO NOT CHANGE)//////////
     ///////////////////////////////////////////////////////////////////////////////////////
-    const resetTime = 5;
+    const resetTime = 15;
 
     var timeRemaining = resetTime;
 
     var intervalID;
 
-var resetWaitTime = 5
-    var waitTime = resetWaitTime;
-    var intervalIDWait;
+
 
     $("#startBtn").on("click", run);
-    $("#stopBtn").on("click", stop); 
+    $("#stopBtn").on("click", stop);
     $("#runBtn").on("click", run);
     $("#resetBtn").on("click", resetTimer);
 
@@ -243,14 +241,6 @@ var resetWaitTime = 5
         }
     }
 
-    // function decWait() {
-    //     waitTime--;
-    //     $("#timer").html("<h1 class='display-1'>Next question in:" + waitTime + "</h1>")
-    //     if (timeRemaining === 0) {
-    //         stop();
-    //         nextQuestion();
-    //     }
-    // }
 
     function resetTimer() {
         timeRemaining = resetTime;
@@ -259,6 +249,37 @@ var resetWaitTime = 5
 
     function stop() {
         clearInterval(intervalID);
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////RESET TIMER///////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var resetWaitTime = 5;
+    var waitTime = resetWaitTime;
+    var intervalIDWait;
+
+    function runWaitTime() {
+        clearInterval (intervalIDWait);
+        intervalIDWait = setInterval(decWait, 1000);
+    }
+
+    function decWait() {
+        waitTime--;
+        $("#timer").html(`<h1 class='display-1'>Next question in:
+        ${waitTime}</h1>`)
+        if (waitTime === 0) {
+            resetWaitTimer();
+            stopWaitTimer();
+            nextQuestion();
+        }
+    }
+
+    function resetWaitTimer() {
+        waitTime = resetWaitTime;
+        runWaitTime();
+    }
+
+    function stopWaitTimer() {
+        clearInterval(intervalIDWait);
     }
 
 
@@ -270,22 +291,25 @@ var resetWaitTime = 5
     function answerCorrect() {
         $("#message").text("You are correct");
         score++;
-        nextQuestion();
+        //      nextQuestion();
+        stop();
+        runWaitTime();
+
     }
 
     //TODO: CREATE ANSWERED INCORRECTLY FUNCTION
     //should use reset while penalizing (ie should not give you points)
     function answerIncorrect() {
         $("#message").text(`Sorry, the correct answer is ${questions[Q].a}`);
-        nextQuestion();
-    }
+        stop();
+        runWaitTime();    }
 
     //TODO: CREATE OUT OF TIME FUNCTION
     //should use reset while penalizing (ie should not give you points... but will display a different message than incorrect function)
     function outOfTime() {
         $("#message").text(`Out of time... The correct answer is ${questions[Q].a}`);
-        nextQuestion();
-    }
+        stop();
+        runWaitTime();    }
 
     function endGame() {
         stop();
