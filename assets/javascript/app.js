@@ -214,6 +214,8 @@ $(document).ready(function () {
 
     var intervalID;
 
+var resetWaitTime = 5
+    var waitTime = resetWaitTime;
     var intervalIDWait;
 
     $("#startBtn").on("click", run);
@@ -222,11 +224,6 @@ $(document).ready(function () {
         clearInterval(intervalID);
         intervalID = setInterval(decrement, 1000);
     }
-
-    // function runWaitTime() {
-    //     clearInterval(intervalIDWait);
-    //     intervalIDWait = setInterval(decWait, 1000);
-    // }
 
     function decrement() {
         timeRemaining--;
@@ -255,6 +252,8 @@ $(document).ready(function () {
     function stop() {
         clearInterval(intervalID);
     }
+
+
     ///////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -301,7 +300,7 @@ $(document).ready(function () {
     }
 
     function startGame() {
-        searchSWAPI();
+        // searchSWAPI();
         Q = -1; //assignment of Q to -1 needs to be before nextQuestion
         nextQuestion();
     }
