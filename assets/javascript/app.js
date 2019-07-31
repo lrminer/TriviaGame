@@ -44,7 +44,7 @@ $(document).ready(function () {
         },
         {
             q: `What is ${characters[C].name}'s mass (in kg)?`,
-            a: `${characters[C].mass}`,
+            a: `${characters[C].mass} kg`,
             choices: [`${characters[C].mass} kg`, `${characters[Math.floor(Math.random()*characters.length)].mass} kg`, `${characters[Math.floor(Math.random()*characters.length)].mass} kg`, `${characters[Math.floor(Math.random()*characters.length)].mass} kg`]
         },
         {
