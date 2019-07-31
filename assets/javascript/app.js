@@ -2,7 +2,7 @@ $(document).ready(function () {
     let score = 0;
     let answerOrOOT = false;
 
-    let C = Math.floor(Math.random() * characters.length);
+    var C = Math.floor(Math.random() * characters.length);
     lukeTestInfo = {
         "name": "Luke Skywalker",
         "height": "172",
@@ -65,7 +65,7 @@ $(document).ready(function () {
         {
             q: `What is ${characters[C].name}'s gender?`,
             a: `${characters[C].gender}`,
-            choices: [`${characters[C].gender}`, "female"] //testing to make sure it can handle less than 4 answers appropriately
+            choices: [`male`, "female"] 
         },
         {
             q: `How many Star Wars films is ${characters[C].name} in?`,
@@ -249,7 +249,7 @@ $(document).ready(function () {
         const backBtn = $(`<button id="backBtn" class="btn btn-primary btn-lg btn-block">Back</button>`);
         backBtn.on("click", function () {
             initializerFunction();
-
+            C = Math.floor(Math.random() * characters.length);
         });
         $("#buttonContainer").append(backBtn);
 
