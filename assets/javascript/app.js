@@ -216,7 +216,7 @@ let C = Math.floor(Math.random()*characters.length);
     //TODO: CREATE ANSWERED CORRECTLY FUNCTION
     //should use reset without penalizing (ie should give you points/numbercorrect++)
     function answerCorrect() {
-        $("#message").text("You are correct");
+        $("#message").html("You are correct!");
         score++;
         //      nextQuestion();
         stop();
@@ -227,7 +227,7 @@ let C = Math.floor(Math.random()*characters.length);
     //TODO: CREATE ANSWERED INCORRECTLY FUNCTION
     //should use reset while penalizing (ie should not give you points)
     function answerIncorrect() {
-        $("#message").text(`Sorry, the correct answer is ${questions[Q].a}`);
+        $("#message").html(`Sorry, the correct answer is <b>${questions[Q].a}</b>.`);
         stop();
         runWaitTime();
     }
@@ -235,7 +235,7 @@ let C = Math.floor(Math.random()*characters.length);
     //TODO: CREATE OUT OF TIME FUNCTION
     //should use reset while penalizing (ie should not give you points... but will display a different message than incorrect function)
     function outOfTime() {
-        $("#message").text(`Out of time... The correct answer is ${questions[Q].a}`);
+        $("#message").html(`Out of time... The correct answer is <b>${questions[Q].a}</b>`);
         stop();
         runWaitTime();
     }

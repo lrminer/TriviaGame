@@ -17,3 +17,8 @@ Thank you so much to the following people for their work on SWAPI:
 
 I am relatively new to JavaScript and currently I have not worked out the best way for storing the data, so I have included the JS files containing the results of roughly twenty http requests for People and Planets. 
 
+## Link to portfolio
+https://github.com/lrminer/Portfolio
+https://lrminer.github.io/Portfolio/
+
+
