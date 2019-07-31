@@ -2,7 +2,7 @@ $(document).ready(function () {
     let score = 0;
     let answerOrOOT = false;
 console.log(characters);
-let C = 10;
+let C = Math.floor(Math.random()*characters.length);
     lukeTestInfo = {
         "name": "Luke Skywalker",
         "height": "172",
@@ -36,68 +36,31 @@ let C = 10;
         "url": "https://swapi.co/api/people/1/"
     };
 
-    // let results;
-
-    // var myResponse;
-    // $.ajax({
-    //                 url: 'PageMethod/GetData',
-    //                 method: 'post',
-    //                 dataType: 'json',
-    //                 data: JSON.stringify({ dataId: "xxx" }),
-    //                 contentType: 'application/json',
-    //                 success: function (data) {
-    //                     myResponse = data.d.responseText;
-    //                 },
-    //                 error: function (ex) {
-    //                     alert(ex.responseText);
-    //                 }
-    //             });
-
-    // function searchSWAPI() {
-    //     const baseURL = "https://swapi.co/api/people/";
-    //     const characterName = $("#queryCharacterName").val();
-    //     let queryURL = baseURL + characterName;
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET"
-    //     }).then(function (response) {
-    //         console.log(response);
-    //         results = response.results;
-    //         console.log(results);
-    //         for (let i = 0; i <results.length; i++){
-    //             console.log(results[i]);
-    //         }
-
-    //     });
-    // }
-
-    // searchSWAPI();
-    // console.log("here are the results " + results);
-
+  
     questions = [{
             q: `What is ${characters[C].name}'s height (in cm)?`,
             a: `${characters[C].height}`,
-            choices: [`${characters[C].height}`, `${characters[Math.floor(Math.random()*87)].height}`, `${characters[Math.floor(Math.random()*87)].height}`, `${characters[Math.floor(Math.random()*87)].height}`]
+            choices: [`${characters[C].height}`, `${characters[Math.floor(Math.random()*characters.length)].height}`, `${characters[Math.floor(Math.random()*characters.length)].height}`, `${characters[Math.floor(Math.random()*characters.length)].height}`]
         },
         {
             q: `What is ${characters[C].name}'s mass (in kg)?`,
             a: `${characters[C].mass}`,
-            choices: [`${characters[C].mass}`, `${characters[Math.floor(Math.random()*87)].mass}`, `${characters[Math.floor(Math.random()*87)].mass}`, `${characters[Math.floor(Math.random()*87)].mass}`]
+            choices: [`${characters[C].mass}`, `${characters[Math.floor(Math.random()*characters.length)].mass}`, `${characters[Math.floor(Math.random()*characters.length)].mass}`, `${characters[Math.floor(Math.random()*characters.length)].mass}`]
         },
         {
             q: `What is ${characters[C].name}'s hair color?`,
             a: `${characters[C].hair_color}`,
-            choices: [`${characters[C].hair_color}`, `${characters[Math.floor(Math.random()*87)].hair_color}`, `${characters[Math.floor(Math.random()*87)].hair_color}`, `${characters[Math.floor(Math.random()*87)].hair_color}`]
+            choices: [`${characters[C].hair_color}`, `${characters[Math.floor(Math.random()*characters.length)].hair_color}`, `${characters[Math.floor(Math.random()*characters.length)].hair_color}`, `${characters[Math.floor(Math.random()*characters.length)].hair_color}`]
         },
         {
             q: `What is ${characters[C].name}'s skin color?`,
             a: `${characters[C].skin_color}`,
-            choices: [`${characters[C].skin_color}`, `${characters[Math.floor(Math.random()*87)].skin_color}`, `${characters[Math.floor(Math.random()*87)].skin_color}`, `${characters[Math.floor(Math.random()*87)].skin_color}`]
+            choices: [`${characters[C].skin_color}`, `${characters[Math.floor(Math.random()*characters.length)].skin_color}`, `${characters[Math.floor(Math.random()*characters.length)].skin_color}`, `${characters[Math.floor(Math.random()*characters.length)].skin_color}`]
         },
         {
             q: `What is ${characters[C].name}'s birth year?`,
             a: `${characters[C].birth_year}`,
-            choices: [`${characters[C].birth_year}`, `${characters[Math.floor(Math.random()*87)].birth_year}`, `${characters[Math.floor(Math.random()*87)].birth_year}`, `${characters[Math.floor(Math.random()*87)].birth_year}`]
+            choices: [`${characters[C].birth_year}`, `${characters[Math.floor(Math.random()*characters.length)].birth_year}`, `${characters[Math.floor(Math.random()*characters.length)].birth_year}`, `${characters[Math.floor(Math.random()*characters.length)].birth_year}`]
         },
         {
             q: `What is ${characters[C].name}'s gender?`,
@@ -114,29 +77,9 @@ let C = 10;
             a: `JabbaScript`,
             choices: [`JabbaScript`, `Java`, `C#`, `JavaScript`]
         },
-
-
-
     ];
-    // console.log(questionsTest);
-    console.log(lukeTestInfo.name);
-    console.log(lukeTestInfo.height);
-    console.log(lukeTestInfo.mass);
-    console.log(lukeTestInfo.hair_color);
-    console.log(lukeTestInfo.skin_color);
-    console.log(lukeTestInfo.birth_year);
-    console.log(lukeTestInfo.gender);
-    console.log(lukeTestInfo.homeworld);
 
-    console.log(questions[0]);
-
-    let answers = []; //convert this into an object with questions and a, b, c, and d;
-
-    let QAobj;
     let Q = -1; //this is to hold the Index of the questions object's array
-    let QHistory = []; //might delete later; was intended for use with questions given in random order.
-    let questionDone = false;
-
 
     initializerFunction();
 
@@ -236,7 +179,7 @@ let C = 10;
         clearInterval(intervalID);
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////RESET TIMER///////////////////////////////////////////////////////////////////
+    ////////////////////////WAIT TIMER///////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var resetWaitTime = 5;
     var waitTime = resetWaitTime;
@@ -307,10 +250,6 @@ let C = 10;
         const backBtn = $(`<button id="backBtn" class="btn btn-primary btn-lg btn-block">Back</button>`);
         backBtn.on("click", function () {
             initializerFunction();
-            /////////////////////////////////////////////////////////////////////
-            //The back button basically reloads the screen, but doesnt actually. Its main purpose is to execute the initizer function.
-            //Through the initializerFunction we are able to reset all of the state. Hopefully this can be used to tie back to a query page as the initializer instead of just the start button.
-            /////////////////////////////////////////////////////////////////////
 
         });
         $("#buttonContainer").append(backBtn);
@@ -319,7 +258,6 @@ let C = 10;
     }
 
     function startGame() {
-        // searchSWAPI();
         Q = -1; //assignment of Q to -1 needs to be before nextQuestion
         nextQuestion();
     }
@@ -334,14 +272,6 @@ let C = 10;
         score = 0;
 
     }
-    //////////////////////////////////////////////////////////////////////////this is for testing. remove later//////////////////////////////////////////////////////////////////////////////////////////////////////
-    $("button").on("click", function () {
-        ref = $(this).attr("data-answer");
-        console.log(ref);
-        html = $(this).html();
-        console.log(html);
-    });
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $("#startBtn").on("click", function () {
         startGame();

@@ -1149,21 +1149,21 @@ let planets = [
         "url": "https://swapi.co/api/planets/1/"
     },
     {
-        "name": "Jakku", 
-        "rotation_period": "unknown", 
-        "orbital_period": "unknown", 
-        "diameter": "unknown", 
-        "climate": "unknown", 
-        "gravity": "unknown", 
-        "terrain": "deserts", 
-        "surface_water": "unknown", 
-        "population": "unknown", 
-        "residents": [], 
-        "films": [
-            "https://swapi.co/api/films/7/"
-        ], 
-        "created": "2015-04-17T06:55:57.556495Z", 
-        "edited": "2015-04-17T06:55:57.556551Z", 
-        "url": "https://swapi.co/api/planets/61/"
-    }
+            "name": "Jakku", 
+            "rotation_period": "unknown", 
+            "orbital_period": "unknown", 
+            "diameter": "unknown", 
+            "climate": "unknown", 
+            "gravity": "unknown", 
+            "terrain": "deserts", 
+            "surface_water": "unknown", 
+            "population": "unknown", 
+            "residents": [], 
+            "films": [
+                "https://swapi.co/api/films/7/"
+            ], 
+            "created": "2015-04-17T06:55:57.556495Z", 
+            "edited": "2015-04-17T06:55:57.556551Z", 
+            "url": "https://swapi.co/api/planets/61/"
+        }
 ];
