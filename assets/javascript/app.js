@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let score = 0;
     let answerOrOOT = false;
-console.log(characters);
+
 let C = Math.floor(Math.random()*characters.length);
     lukeTestInfo = {
         "name": "Luke Skywalker",
@@ -86,7 +86,6 @@ let C = Math.floor(Math.random()*characters.length);
     function nextQuestion() {
         Q++;
         answerOrOOT = false;
-        console.log("Q: " + Q);
         if (Q > questions.length - 1) {
             endGame();
         } else {
