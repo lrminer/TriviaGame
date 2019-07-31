@@ -38,27 +38,27 @@ let C = Math.floor(Math.random()*characters.length);
 
   
     questions = [{
-            q: `What is ${characters[C].name}'s height (in cm)?`,
-            a: `${characters[C].height}`,
-            choices: [`${characters[C].height}`, `${characters[Math.floor(Math.random()*characters.length)].height}`, `${characters[Math.floor(Math.random()*characters.length)].height}`, `${characters[Math.floor(Math.random()*characters.length)].height}`]
+            q: `How tall is ${characters[C].name} (in cm)?`,
+            a: `${characters[C].height} cm`,
+            choices: [`${characters[C].height} cm`, `${characters[Math.floor(Math.random()*characters.length)].height} cm`, `${characters[Math.floor(Math.random()*characters.length)].height} cm`, `${characters[Math.floor(Math.random()*characters.length)].height} cm`]
         },
         {
             q: `What is ${characters[C].name}'s mass (in kg)?`,
             a: `${characters[C].mass}`,
-            choices: [`${characters[C].mass}`, `${characters[Math.floor(Math.random()*characters.length)].mass}`, `${characters[Math.floor(Math.random()*characters.length)].mass}`, `${characters[Math.floor(Math.random()*characters.length)].mass}`]
+            choices: [`${characters[C].mass} kg`, `${characters[Math.floor(Math.random()*characters.length)].mass} kg`, `${characters[Math.floor(Math.random()*characters.length)].mass} kg`, `${characters[Math.floor(Math.random()*characters.length)].mass} kg`]
         },
         {
-            q: `What is ${characters[C].name}'s hair color?`,
+            q: `What color is ${characters[C].name}'s hair?`,
             a: `${characters[C].hair_color}`,
             choices: [`${characters[C].hair_color}`, `${characters[Math.floor(Math.random()*characters.length)].hair_color}`, `${characters[Math.floor(Math.random()*characters.length)].hair_color}`, `${characters[Math.floor(Math.random()*characters.length)].hair_color}`]
         },
         {
-            q: `What is ${characters[C].name}'s skin color?`,
+            q: `What color is ${characters[C].name}'s skin?`,
             a: `${characters[C].skin_color}`,
             choices: [`${characters[C].skin_color}`, `${characters[Math.floor(Math.random()*characters.length)].skin_color}`, `${characters[Math.floor(Math.random()*characters.length)].skin_color}`, `${characters[Math.floor(Math.random()*characters.length)].skin_color}`]
         },
         {
-            q: `What is ${characters[C].name}'s birth year?`,
+            q: `During which year (BBY or ABY) was ${characters[C].name} born?`,
             a: `${characters[C].birth_year}`,
             choices: [`${characters[C].birth_year}`, `${characters[Math.floor(Math.random()*characters.length)].birth_year}`, `${characters[Math.floor(Math.random()*characters.length)].birth_year}`, `${characters[Math.floor(Math.random()*characters.length)].birth_year}`]
         },
