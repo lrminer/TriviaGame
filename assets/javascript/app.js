@@ -2,7 +2,7 @@ $(document).ready(function () {
     let score = 0;
     let answerOrOOT = false;
 console.log(characters);
-
+let C = 10;
     lukeTestInfo = {
         "name": "Luke Skywalker",
         "height": "172",
@@ -75,39 +75,39 @@ console.log(characters);
     // console.log("here are the results " + results);
 
     questions = [{
-            q: `What is ${lukeTestInfo.name}'s height (in cm)?`,
-            a: `${lukeTestInfo.height}`,
-            choices: [`${lukeTestInfo.height}`, "200", "100", "150"]
+            q: `What is ${characters[C].name}'s height (in cm)?`,
+            a: `${characters[C].height}`,
+            choices: [`${characters[C].height}`, `${characters[Math.floor(Math.random()*87)].height}`, `${characters[Math.floor(Math.random()*87)].height}`, `${characters[Math.floor(Math.random()*87)].height}`]
         },
         {
-            q: `What is ${lukeTestInfo.name}'s mass (in kg)?`,
-            a: `${lukeTestInfo.mass}`,
-            choices: [`${lukeTestInfo.mass}`, "78", "79", "80"]
+            q: `What is ${characters[C].name}'s mass (in kg)?`,
+            a: `${characters[C].mass}`,
+            choices: [`${characters[C].mass}`, `${characters[Math.floor(Math.random()*87)].mass}`, `${characters[Math.floor(Math.random()*87)].mass}`, `${characters[Math.floor(Math.random()*87)].mass}`]
         },
         {
-            q: `What is ${lukeTestInfo.name}'s hair color?`,
-            a: `${lukeTestInfo.hair_color}`,
-            choices: [`${lukeTestInfo.hair_color}`, "black", "red", "green"]
+            q: `What is ${characters[C].name}'s hair color?`,
+            a: `${characters[C].hair_color}`,
+            choices: [`${characters[C].hair_color}`, `${characters[Math.floor(Math.random()*87)].hair_color}`, `${characters[Math.floor(Math.random()*87)].hair_color}`, `${characters[Math.floor(Math.random()*87)].hair_color}`]
         },
         {
-            q: `What is ${lukeTestInfo.name}'s skin color?`,
-            a: `${lukeTestInfo.skin_color}`,
-            choices: [`${lukeTestInfo.skin_color}`, "dark", "blue", "yellow"]
+            q: `What is ${characters[C].name}'s skin color?`,
+            a: `${characters[C].skin_color}`,
+            choices: [`${characters[C].skin_color}`, `${characters[Math.floor(Math.random()*87)].skin_color}`, `${characters[Math.floor(Math.random()*87)].skin_color}`, `${characters[Math.floor(Math.random()*87)].skin_color}`]
         },
         {
-            q: `What is ${lukeTestInfo.name}'s birth year?`,
-            a: `${lukeTestInfo.birth_year}`,
-            choices: [`${lukeTestInfo.birth_year}`, "20BBY", "20ABY", "19ABY"]
+            q: `What is ${characters[C].name}'s birth year?`,
+            a: `${characters[C].birth_year}`,
+            choices: [`${characters[C].birth_year}`, `${characters[Math.floor(Math.random()*87)].birth_year}`, `${characters[Math.floor(Math.random()*87)].birth_year}`, `${characters[Math.floor(Math.random()*87)].birth_year}`]
         },
         {
-            q: `What is ${lukeTestInfo.name}'s gender?`,
-            a: `${lukeTestInfo.gender}`,
-            choices: [`${lukeTestInfo.gender}`, "female"] //testing to make sure it can handle less than 4 answers appropriately
+            q: `What is ${characters[C].name}'s gender?`,
+            a: `${characters[C].gender}`,
+            choices: [`${characters[C].gender}`, "female"] //testing to make sure it can handle less than 4 answers appropriately
         },
         {
-            q: `How many Star Wars films is ${lukeTestInfo.name} in?`,
-            a: `${lukeTestInfo.films.length}`,
-            choices: [`${lukeTestInfo.films.length}`, `${lukeTestInfo.films.length+2}`, `${lukeTestInfo.films.length-1}`, `${lukeTestInfo.films.length+1}`]
+            q: `How many Star Wars films is ${characters[C].name} in?`,
+            a: `${characters[C].films.length}`,
+            choices: [`${characters[C].films.length}`, `${characters[C].films.length+2}`, `${characters[C].films.length-1}`, `${characters[C].films.length+1}`]
         },
         {
             q: `What programming language do the Hutts use?`,
@@ -165,7 +165,7 @@ console.log(characters);
             let button = $("<button>").attr("type", "button");
 
             button.attr("data-answer", questions[Q].choices[i]);
-            button.addClass("btn btn-light btn-lg col-3");
+            button.addClass("btn btn-light btn-lg btn-block");
             button.text(questions[Q].choices[i]);
            // div.append(button);
             button.on("click", function () {
