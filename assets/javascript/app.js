@@ -2,7 +2,7 @@ $(document).ready(function () {
     let score = 0;
     let answerOrOOT = false;
 
-let C = Math.floor(Math.random()*characters.length);
+    let C = Math.floor(Math.random() * characters.length);
     lukeTestInfo = {
         "name": "Luke Skywalker",
         "height": "172",
@@ -36,7 +36,7 @@ let C = Math.floor(Math.random()*characters.length);
         "url": "https://swapi.co/api/people/1/"
     };
 
-  
+
     questions = [{
             q: `How tall is ${characters[C].name} (in cm)?`,
             a: `${characters[C].height} cm`,
@@ -103,13 +103,13 @@ let C = Math.floor(Math.random()*characters.length);
         shuffle(questions[Q].choices);
         for (let i = 0; i < questions[Q].choices.length; i++) {
             //let div = $("<div>");
-            
+
             let button = $("<button>").attr("type", "button");
 
             button.attr("data-answer", questions[Q].choices[i]);
             button.addClass("btn btn-light btn-lg btn-block");
             button.text(questions[Q].choices[i]);
-           // div.append(button);
+            // div.append(button);
             button.on("click", function () {
                 const ref = $(this).attr("data-answer"); //ref is going to grab our data-answer
                 console.log("this is the data-answer: " + ref);
@@ -162,6 +162,7 @@ let C = Math.floor(Math.random()*characters.length);
         timeRemaining--;
         $("#timer").html("<h1 class='display-1'>" + timeRemaining + "</h1>");
         if (timeRemaining === 0) {
+            answerOrOOT = true;
             stop();
             outOfTime();
             console.log("Time's Up!");
@@ -218,7 +219,6 @@ let C = Math.floor(Math.random()*characters.length);
     function answerCorrect() {
         $("#message").html("You are correct!");
         score++;
-        //      nextQuestion();
         stop();
         runWaitTime();
 
